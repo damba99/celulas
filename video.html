@@ -150,6 +150,29 @@
 
   </script>
 
+  <script>
+    // Crear audios
+    const audioReproducir = new Audio('audios/reproducir.mp3');
+    const audioJugarVideo = new Audio('audios/jugar.mp3');
+    const audioAtrasVideo = new Audio('audios/atras.mp3');
+
+    // Agregar hover a botones
+    document.getElementById('btnPlay').addEventListener('mouseover', () => {
+      audioReproducir.currentTime = 0;
+      audioReproducir.play();
+    });
+
+    document.querySelector('a[href="seleccion.html"]').addEventListener('mouseover', () => {
+      audioJugarVideo.currentTime = 0;
+      audioJugarVideo.play();
+    });
+
+    document.querySelector('a[href="index.html"]').addEventListener('mouseover', () => {
+      audioAtrasVideo.currentTime = 0;
+      audioAtrasVideo.play();
+    });
+  </script>
+
 </body>
 
 </html>

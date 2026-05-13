@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fotosíntesis - Verdadero o Falso</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --surface: #f3faff;
+      --surface-dim: #c3deec;
+      --primary: #9f4200;
+      --secondary: #1b6d24;
+      --error: #ba1a1a;
+      --on-surface: #021f29;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: radial-gradient(circle at top, #e0f2f1 0%, #f3faff 45%, #f3faff 100%);
+      color: var(--on-surface);
+      margin: 0;
+      padding: 10px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .titulo {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 15px rgba(0,0,0,.12);
+    }
+
+    .pregunta {
+      font-size: 24px;
+      font-weight: 500;
+      text-align: center;
+      margin: 20px 0;
+      line-height: 1.4;
+      max-width: 600px;
+    }
+
+    .opciones {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .boton-vof {
+      width: 150px;
+      height: 150px;
+      border-radius: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05),
+        -20px -20px 60px rgba(255, 255, 255, 0.8),
+        inset 6px 6px 12px rgba(255, 255, 255, 0.5),
+        inset -6px -6px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .boton-vof:hover {
+      transform: translateY(-6px);
+    }
+
+    .boton-vof:active {
+      transform: scale(0.98) translateY(4px);
+      box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.05),
+        inset -10px -10px 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .verdadero {
+      background: linear-gradient(135deg, #a0f399, #88d982);
+      color: #217128;
+    }
+
+    .falso {
+      background: linear-gradient(135deg, #ffdad6, #ffbab1);
+      color: #93000a;
+    }
+
+    .feedback {
+      font-size: 36px;
+      font-weight: 700;
+      text-align: center;
+      margin: 10px 0;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .correcto {
+      color: var(--secondary);
+    }
+
+    .incorrecto {
+      color: var(--error);
+    }
+
+    .botones-control {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .boton-control {
+      padding: 12px 24px;
+      border-radius: 24px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      box-shadow: 0 18px 40px rgba(36,120,170,0.18);
+    }
+
+    .reiniciar {
+      background: linear-gradient(135deg, #ffbb33, #f79f1f);
+      color: white;
+    }
+
+    .atras {
+      background: linear-gradient(135deg, #4caf50, #2e7d32);
+      color: white;
+    }
+
+    .boton-control:hover {
+      transform: translateY(-4px);
+    }
+
+    .boton-control:active {
+      transform: translateY(2px);
+    }
+
+    @media (max-width: 768px) {
+      .titulo {
+        font-size: 36px;
+      }
+      .pregunta {
+        font-size: 24px;
+      }
+      .opciones {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .boton-vof {
+        width: 150px;
+        height: 150px;
+        font-size: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- BOTÓN ATRÁS -->
+  <a href="seleccion.html" style="position: fixed; top: 20px; left: 20px; z-index: 9999; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 18px; text-decoration: none; font-size: 20px; font-weight: 800; color: white; background: linear-gradient(135deg, #4caf50, #2e7d32); box-shadow: 0 10px 20px rgba(0,0,0,.15); transition: .2s;" onmouseover="this.style.transform='translateY(-2px) scale(1.03)'" onmouseout="this.style.transform='translateY(0) scale(1)'">⬅ Atrás</a>
+
+  <div class="titulo">🌞 FOTOSÍNTESIS</div>
+
+  <div id="pregunta" class="pregunta"></div>
+
+  <div class="opciones">
+    <div id="verdadero" class="boton-vof verdadero">👍<br><span style="font-size: 24px;">Verdadero</span></div>
+    <div id="falso" class="boton-vof falso">👎<br><span style="font-size: 24px;">Falso</span></div>
+  </div>
+
+  <div id="feedback" class="feedback"></div>
+
+  <div class="botones-control">
+    <button id="reiniciar" class="boton-control reiniciar">🔄 Reiniciar</button>
+  </div>
+
+  <script>
+    const preguntas = [
+      { texto: "La fotosíntesis es la manera en la que las plantas se alimentan.", correcto: true },
+      { texto: "Las células forman las plantas.", correcto: true },
+      { texto: "Los cloroplastos ayudan en la fotosíntesis.", correcto: true },
+      { texto: "Las plantas necesitan sol para fotosíntesis.", correcto: true },
+      { texto: "Los animales hacen fotosíntesis.", correcto: false }
+    ];
+
+    let indiceActual = 0;
+    let respondido = false;
+
+    const preguntaEl = document.getElementById('pregunta');
+    const verdaderoEl = document.getElementById('verdadero');
+    const falsoEl = document.getElementById('falso');
+    const feedbackEl = document.getElementById('feedback');
+    const reiniciarEl = document.getElementById('reiniciar');
+
+    // Crear audios
+    const audioPregunta = new Audio();
+    const audioVerdadero = new Audio('audios/verdadero.mp3');
+    const audioFalso = new Audio('audios/falso.mp3');
+    const audioCorrecto = new Audio('audios/correcto.mp3');
+    const audioIncorrecto = new Audio('audios/incorrecto.mp3');
+    const audioAtras = new Audio('audios/atras.mp3');
+    const audioReiniciar = new Audio('audios/reiniciar.mp3');
+
+    function mostrarPregunta() {
+      preguntaEl.textContent = preguntas[indiceActual].texto;
+      feedbackEl.textContent = '';
+      feedbackEl.className = 'feedback';
+      respondido = false;
+      // Actualizar audio de pregunta
+      audioPregunta.src = `audios/p${indiceActual + 1}.mp3`;
+    }
+
+    function verificarRespuesta(esVerdadero) {
+      if (respondido) return;
+      respondido = true;
+      const correcto = preguntas[indiceActual].correcto;
+      if (esVerdadero === correcto) {
+        feedbackEl.textContent = '¡Correcto! 👍';
+        feedbackEl.classList.add('correcto');
+        audioCorrecto.currentTime = 0;
+        audioCorrecto.play();
+      } else {
+        feedbackEl.textContent = 'Incorrecto 😞';
+        feedbackEl.classList.add('incorrecto');
+        audioIncorrecto.currentTime = 0;
+        audioIncorrecto.play();
+      }
+      setTimeout(() => {
+        indiceActual++;
+        if (indiceActual < preguntas.length) {
+          mostrarPregunta();
+        } else {
+          feedbackEl.textContent = '¡Juego terminado! 🎉';
+          feedbackEl.className = 'feedback correcto';
+        }
+      }, 2000);
+    }
+
+    verdaderoEl.addEventListener('click', () => verificarRespuesta(true));
+    falsoEl.addEventListener('click', () => verificarRespuesta(false));
+
+    reiniciarEl.addEventListener('click', () => {
+      indiceActual = 0;
+      mostrarPregunta();
+    });
+
+    // Hover audios
+    preguntaEl.addEventListener('mouseover', () => {
+      audioPregunta.currentTime = 0;
+      audioPregunta.play();
+    });
+
+    verdaderoEl.addEventListener('mouseover', () => {
+      audioVerdadero.currentTime = 0;
+      audioVerdadero.play();
+    });
+
+    falsoEl.addEventListener('mouseover', () => {
+      audioFalso.currentTime = 0;
+      audioFalso.play();
+    });
+
+    document.querySelector('a[href="seleccion.html"]').addEventListener('mouseover', () => {
+      audioAtras.currentTime = 0;
+      audioAtras.play();
+    });
+
+    reiniciarEl.addEventListener('mouseover', () => {
+      audioReiniciar.currentTime = 0;
+      audioReiniciar.play();
+    });
+
+    mostrarPregunta();
+  </script>
+</body>
+</html>

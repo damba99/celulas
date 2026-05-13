@@ -490,6 +490,23 @@
 
   </script>
 
+  <script>
+    // Crear audios
+    const audioAtrasAni = new Audio('audios/atras.mp3');
+    const audioReiniciarAni = new Audio('audios/reiniciar.mp3');
+
+    // Agregar hover a botones
+    document.querySelector('a[href="seleccion.html"]').addEventListener('mouseover', () => {
+      audioAtrasAni.currentTime = 0;
+      audioAtrasAni.play();
+    });
+
+    document.getElementById('btnReiniciar').addEventListener('mouseover', () => {
+      audioReiniciarAni.currentTime = 0;
+      audioReiniciarAni.play();
+    });
+  </script>
+
 </body>
 
 </html>

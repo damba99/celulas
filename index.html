@@ -228,6 +228,23 @@
 
   </div>
 
+  <script>
+    // Crear audios
+    const audioVideo = new Audio('audios/video.mp3');
+    const audioJugar = new Audio('audios/jugar.mp3');
+
+    // Agregar hover a botones
+    document.querySelector('a[href="video.html"]').addEventListener('mouseover', () => {
+      audioVideo.currentTime = 0;
+      audioVideo.play();
+    });
+
+    document.querySelector('a[href="seleccion.html"]').addEventListener('mouseover', () => {
+      audioJugar.currentTime = 0;
+      audioJugar.play();
+    });
+  </script>
+
 </body>
 
 </html>

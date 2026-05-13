@@ -137,7 +137,7 @@
 
     .emoji-juego{
 
-      font-size:88px;
+      font-size: 60px;
     }
 
     .texto-juego{
@@ -180,7 +180,7 @@
 
       .emoji-juego{
 
-        font-size:70px;
+        font-size: 50px;
       }
 
     }
@@ -243,13 +243,34 @@
 
         <div class="emoji-juego">
 
-          🐾
+          🐾👤
 
         </div>
 
         <div class="texto-juego">
 
           Célula Animal
+
+        </div>
+
+      </a>
+
+      <!-- FOTOSÍNTESIS -->
+
+      <a
+        href="fotosintesis.html"
+        class="boton-juego"
+      >
+
+        <div class="emoji-juego">
+
+          🌞💧🌿
+
+        </div>
+
+        <div class="texto-juego">
+
+          Fotosíntesis
 
         </div>
 
@@ -269,6 +290,35 @@
     </a>
 
   </div>
+
+  <script>
+    // Crear audios
+    const audioCelVegetal = new Audio('audios/cel-vegetal.mp3');
+    const audioCelAnimal = new Audio('audios/cel-animal.mp3');
+    const audioFotosintesis = new Audio('audios/fotosintesis.mp3');
+    const audioAtras = new Audio('audios/atras.mp3');
+
+    // Agregar hover a botones
+    document.querySelector('a[href="veg.html"]').addEventListener('mouseover', () => {
+      audioCelVegetal.currentTime = 0;
+      audioCelVegetal.play();
+    });
+
+    document.querySelector('a[href="ani.html"]').addEventListener('mouseover', () => {
+      audioCelAnimal.currentTime = 0;
+      audioCelAnimal.play();
+    });
+
+    document.querySelector('a[href="fotosintesis.html"]').addEventListener('mouseover', () => {
+      audioFotosintesis.currentTime = 0;
+      audioFotosintesis.play();
+    });
+
+    document.querySelector('a[href="index.html"]').addEventListener('mouseover', () => {
+      audioAtras.currentTime = 0;
+      audioAtras.play();
+    });
+  </script>
 
 </body>
 

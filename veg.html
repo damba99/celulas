@@ -537,6 +537,23 @@
 
   </script>
 
+  <script>
+    // Crear audios
+    const audioAtrasVeg = new Audio('audios/atras.mp3');
+    const audioReiniciarVeg = new Audio('audios/reiniciar.mp3');
+
+    // Agregar hover a botones
+    document.querySelector('a[href="seleccion.html"]').addEventListener('mouseover', () => {
+      audioAtrasVeg.currentTime = 0;
+      audioAtrasVeg.play();
+    });
+
+    document.getElementById('btnReiniciar').addEventListener('mouseover', () => {
+      audioReiniciarVeg.currentTime = 0;
+      audioReiniciarVeg.play();
+    });
+  </script>
+
 </body>
 
 </html>
