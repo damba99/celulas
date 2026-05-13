@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Biología Celular</title>
+
+  <!-- CSS -->
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+  <style>
+
+    /* PANTALLA PRINCIPAL */
+
+    .pantalla-inicio{
+
+      min-height:100vh;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      flex-direction:column;
+
+      gap:30px;
+    }
+
+    .titulo-inicio{
+
+      font-size:56px;
+
+      font-weight:900;
+
+      text-align:center;
+
+      color:#1f2d3d;
+
+      text-shadow:
+        0 4px 15px rgba(0,0,0,.12);
+    }
+
+    .subtitulo{
+
+      font-size:22px;
+
+      opacity:.8;
+
+      text-align:center;
+
+      margin-top:-10px;
+    }
+
+    .contenedor-botones{
+
+      display:flex;
+
+      gap:25px;
+
+      flex-wrap:wrap;
+
+      justify-content:center;
+    }
+
+    .boton-menu{
+
+      width:260px;
+
+      min-height:220px;
+
+      border-radius:32px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #9de3ff,
+          #6bcfff
+        );
+
+      border: 1px solid rgba(255,255,255,0.7);
+
+      box-shadow:
+        0 18px 40px rgba(36,120,170,0.18);
+
+      display:flex;
+
+      flex-direction:column;
+
+      justify-content:center;
+
+      align-items:center;
+
+      gap:18px;
+
+      text-decoration:none;
+
+      color:#143651;
+    }
+
+    .boton-menu:hover{
+
+      transform:
+        translateY(-6px)
+        scale(1.03);
+
+      background:
+        linear-gradient(
+          135deg,
+          #b8ecff,
+          #85d4ff
+        );
+
+      box-shadow:
+        0 22px 48px rgba(36,120,170,0.22);
+    }
+
+    .emoji-boton{
+
+      font-size:72px;
+    }
+
+    .texto-boton{
+
+      font-size:32px;
+
+      font-weight:800;
+    }
+
+    @media (max-width:768px){
+
+      .titulo-inicio{
+
+        font-size:38px;
+      }
+
+      .boton-menu{
+
+        width:100%;
+
+        max-width:320px;
+
+        height:180px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="pantalla-inicio">
+
+    <!-- TÍTULO -->
+
+    <div class="titulo-inicio">
+
+      🔬 BIOLOGÍA CELULAR
+
+    </div>
+
+    <div class="subtitulo">
+
+      Explorá y aprendé las partes de la célula
+
+    </div>
+
+    <!-- BOTONES -->
+
+    <div class="contenedor-botones">
+
+      <!-- VIDEO -->
+
+      <a
+        href="video.html"
+        class="boton-menu"
+      >
+
+        <div class="emoji-boton">
+
+          🎥
+
+        </div>
+
+        <div class="texto-boton">
+
+          Video
+
+        </div>
+
+      </a>
+
+      <!-- JUGAR -->
+
+      <a
+        href="seleccion.html"
+        class="boton-menu"
+      >
+
+        <div class="emoji-boton">
+
+          🎮
+
+        </div>
+
+        <div class="texto-boton">
+
+          Jugar
+
+        </div>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

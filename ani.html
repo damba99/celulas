@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Célula Animal</title>
+
+  <!-- CSS EXTERNO -->
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+</head>
+
+<body>
+    <!-- BOTÓN ATRÁS -->
+
+<a
+  href="seleccion.html"
+
+  style="
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    z-index:9999;
+
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    font-size:20px;
+    font-weight:800;
+
+    color:white;
+
+    background:
+      linear-gradient(
+        135deg,
+        #4caf50,
+        #2e7d32
+      );
+
+    box-shadow:
+      0 10px 20px rgba(0,0,0,.15);
+
+    transition:.2s;
+  "
+
+  onmouseover="
+    this.style.transform='translateY(-2px) scale(1.03)'
+  "
+
+  onmouseout="
+    this.style.transform='translateY(0) scale(1)'
+  "
+>
+
+  ⬅ Atrás
+
+</a>
+
+  <!-- TÍTULO -->
+
+  <div class="titulo-general">
+
+    🐾 CÉLULA ANIMAL
+
+  </div>
+
+  <!-- CONTENEDOR -->
+
+  <div class="contenedor">
+
+    <!-- PANEL IZQUIERDO -->
+
+    <div class="panel-izquierdo">
+
+      <!-- CONTENEDOR IMAGEN -->
+
+      <div class="contenedor-imagen">
+
+        <!-- NOMBRE -->
+
+        <div
+          id="nombreOrganelo"
+          class="nombre-organelo"
+        ></div>
+
+        <!-- IMAGEN -->
+
+        <div
+          class="lado-imagen"
+          id="zonaImagen"
+        >
+
+          <img
+            id="imagenPrincipal"
+            src="animal/ani0.png"
+            alt="Célula animal"
+          >
+
+        </div>
+
+      </div>
+
+      <!-- BOTÓN -->
+
+      <button id="btnReiniciar">
+
+        🔄 Reiniciar
+
+      </button>
+
+    </div>
+
+    <!-- GRILLA -->
+
+    <div
+      class="grilla grilla-5"
+
+      style="
+        background-image:
+        url('animal/partes/fondo.png');
+      "
+    >
+
+      <!-- ITEM 1 -->
+
+      <div
+        class="item"
+        data-numero="1"
+      >
+
+        <img
+          src="animal/partes/1nucleo.png"
+          alt="Núcleo"
+        >
+
+      </div>
+
+      <!-- ITEM 2 -->
+
+      <div
+        class="item"
+        data-numero="2"
+      >
+
+        <img
+          src="animal/partes/2retendoplasm.png"
+          alt="Retículo"
+        >
+
+      </div>
+
+      <!-- ITEM 3 -->
+
+      <div
+        class="item"
+        data-numero="3"
+      >
+
+        <img
+          src="animal/partes/3golgi.png"
+          alt="Golgi"
+        >
+
+      </div>
+
+      <!-- ITEM 4 -->
+
+      <div
+        class="item"
+        data-numero="4"
+      >
+
+        <img
+          src="animal/partes/4lisosomas.png"
+          alt="Lisosomas"
+        >
+
+      </div>
+
+      <!-- ITEM 5 -->
+
+      <div
+        class="item"
+        data-numero="5"
+      >
+
+        <img
+          src="animal/partes/5mitocondria.png"
+          alt="Mitocondria"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const items =
+      document.querySelectorAll(".item");
+
+    const zonaImagen =
+      document.getElementById("zonaImagen");
+
+    const imagen =
+      document.getElementById("imagenPrincipal");
+
+    const btnReiniciar =
+      document.getElementById("btnReiniciar");
+
+    const nombreOrganelo =
+      document.getElementById("nombreOrganelo");
+
+    let numeroActual = null;
+
+    let audioActual = null;
+
+    let siguientePermitido = 1;
+
+    /* NOMBRES ARCHIVOS */
+
+    const nombres = {
+
+      1:"1nucleo",
+      2:"2retendoplasm",
+      3:"3golgi",
+      4:"4lisosomas",
+      5:"5mitocondria"
+
+    };
+
+    /* NOMBRES VISIBLES */
+
+    const nombresBonitos = {
+
+      1:"Núcleo",
+      2:"Retículo Endoplasmático",
+      3:"Aparato de Golgi",
+      4:"Lisosomas",
+      5:"Mitocondria"
+
+    };
+
+    /* MOSTRAR NOMBRE */
+
+    function mostrarNombre(numero){
+
+      nombreOrganelo.innerText =
+        nombresBonitos[numero];
+
+      nombreOrganelo.classList.add(
+        "visible"
+      );
+
+    }
+
+    /* BLOQUEOS */
+
+    function actualizarBloqueos(){
+
+      items.forEach(item => {
+
+        const numero =
+          Number(item.dataset.numero);
+
+        item.classList.remove(
+          "activo",
+          "bloqueado"
+        );
+
+        item.removeAttribute(
+          "draggable"
+        );
+
+        const candado =
+          item.querySelector(".bloqueo");
+
+        if(candado)
+          candado.remove();
+
+        /* ACTUAL */
+
+        if(numero === siguientePermitido){
+
+          item.classList.add(
+            "activo"
+          );
+
+          item.setAttribute(
+            "draggable",
+            "true"
+          );
+
+        }
+
+        /* FUTUROS */
+
+        else if(numero > siguientePermitido){
+
+          item.classList.add(
+            "bloqueado"
+          );
+
+          item.insertAdjacentHTML(
+            "beforeend",
+            `<div class="bloqueo">🔒</div>`
+          );
+
+        }
+
+      });
+
+    }
+
+    actualizarBloqueos();
+
+    /* ITEMS */
+
+    items.forEach(item => {
+
+      /* DRAG */
+
+      item.addEventListener(
+        "dragstart",
+        () => {
+
+          const numero =
+            Number(item.dataset.numero);
+
+          if(numero !== siguientePermitido)
+            return;
+
+          numeroActual = numero;
+
+        }
+      );
+
+      /* AUDIO */
+
+      item.addEventListener(
+        "mouseenter",
+        () => {
+
+          const numero =
+            Number(item.dataset.numero);
+
+          if(numero !== siguientePermitido)
+            return;
+
+          const nombreAudio =
+            nombres[numero];
+
+          if(audioActual){
+
+            audioActual.pause();
+
+            audioActual.currentTime = 0;
+
+          }
+
+          audioActual = new Audio(
+            `animal/audio/${nombreAudio}.mp3`
+          );
+
+          audioActual.play();
+
+        }
+      );
+
+    });
+
+    /* DRAG OVER */
+
+    zonaImagen.addEventListener(
+      "dragover",
+      (e) => {
+
+        e.preventDefault();
+
+        zonaImagen.classList.add(
+          "drag-over"
+        );
+
+      }
+    );
+
+    zonaImagen.addEventListener(
+      "dragleave",
+      () => {
+
+        zonaImagen.classList.remove(
+          "drag-over"
+        );
+
+      }
+    );
+
+    /* DROP */
+
+    zonaImagen.addEventListener(
+      "drop",
+      (e) => {
+
+        e.preventDefault();
+
+        zonaImagen.classList.remove(
+          "drag-over"
+        );
+
+        if(!numeroActual)
+          return;
+
+        const numero =
+          Number(numeroActual);
+
+        if(numero !== siguientePermitido)
+          return;
+
+        /* CAMBIAR IMAGEN */
+
+        imagen.src =
+          `animal/ani${numero}.png`;
+
+        /* MOSTRAR NOMBRE */
+
+        mostrarNombre(numero);
+
+        /* AVANZAR */
+
+        siguientePermitido++;
+
+        actualizarBloqueos();
+
+        numeroActual = null;
+
+      }
+    );
+
+    /* REINICIAR */
+
+    btnReiniciar.addEventListener(
+      "click",
+      () => {
+
+        imagen.src =
+          "animal/ani0.png";
+
+        siguientePermitido = 1;
+
+        nombreOrganelo.classList.remove(
+          "visible"
+        );
+
+        if(audioActual){
+
+          audioActual.pause();
+
+          audioActual.currentTime = 0;
+
+        }
+
+        actualizarBloqueos();
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>

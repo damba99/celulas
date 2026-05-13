@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Seleccionar Juego</title>
+
+  <!-- CSS GENERAL -->
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+  <!-- CSS EXCLUSIVO -->
+
+  <style>
+
+    /* =========================
+       PANTALLA
+    ========================= */
+
+    .pantalla-seleccion{
+
+      min-height:100vh;
+
+      display:flex;
+
+      flex-direction:column;
+
+      justify-content:center;
+
+      align-items:center;
+
+      gap:30px;
+
+      padding:30px;
+    }
+
+    /* =========================
+       TÍTULO
+    ========================= */
+
+    .titulo-seleccion{
+
+      font-size:56px;
+
+      font-weight:900;
+
+      text-align:center;
+
+      color:#1f2d3d;
+
+      text-shadow:
+        0 4px 15px rgba(0,0,0,.12);
+    }
+
+    .subtitulo-seleccion{
+
+      font-size:22px;
+
+      opacity:.8;
+
+      text-align:center;
+
+      margin-top:-10px;
+    }
+
+    /* =========================
+       BOTONES
+    ========================= */
+
+    .contenedor-juegos{
+
+      display:flex;
+
+      gap:30px;
+
+      flex-wrap:wrap;
+
+      justify-content:center;
+    }
+
+    .boton-juego{
+
+      width:280px;
+
+      height:260px;
+
+      border-radius:30px;
+
+      text-decoration:none;
+
+      background:
+        rgba(255,255,255,.82);
+
+      backdrop-filter:blur(10px);
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.08);
+
+      display:flex;
+
+      flex-direction:column;
+
+      justify-content:center;
+
+      align-items:center;
+
+      gap:20px;
+
+      transition:.25s;
+
+      color:#1f2d3d;
+    }
+
+    .boton-juego:hover{
+
+      transform:
+        translateY(-6px)
+        scale(1.03);
+
+      background:
+        rgba(255,255,255,.95);
+    }
+
+    /* =========================
+       EMOJIS
+    ========================= */
+
+    .emoji-juego{
+
+      font-size:88px;
+    }
+
+    .texto-juego{
+
+      font-size:32px;
+
+      font-weight:900;
+
+      text-align:center;
+    }
+
+    /* =========================
+       VOLVER
+    ========================= */
+
+    .boton-volver{
+
+      margin-top:10px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width:768px){
+
+      .titulo-seleccion{
+
+        font-size:38px;
+      }
+
+      .boton-juego{
+
+        width:100%;
+
+        max-width:320px;
+
+        height:220px;
+      }
+
+      .emoji-juego{
+
+        font-size:70px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="pantalla-seleccion">
+
+    <!-- TÍTULO -->
+
+    <div class="titulo-seleccion">
+
+      🎮 SELECCIONAR JUEGO
+
+    </div>
+
+    <!-- SUBTÍTULO -->
+
+    <div class="subtitulo-seleccion">
+
+      Elegí qué célula querés explorar
+
+    </div>
+
+    <!-- BOTONES -->
+
+    <div class="contenedor-juegos">
+
+      <!-- VEGETAL -->
+
+      <a
+        href="veg.html"
+        class="boton-juego"
+      >
+
+        <div class="emoji-juego">
+
+          🌿
+
+        </div>
+
+        <div class="texto-juego">
+
+          Célula Vegetal
+
+        </div>
+
+      </a>
+
+      <!-- ANIMAL -->
+
+      <a
+        href="ani.html"
+        class="boton-juego"
+      >
+
+        <div class="emoji-juego">
+
+          🐾
+
+        </div>
+
+        <div class="texto-juego">
+
+          Célula Animal
+
+        </div>
+
+      </a>
+
+    </div>
+
+    <!-- VOLVER -->
+
+    <a
+      href="index.html"
+      class="boton-volver"
+    >
+
+      ⬅ Volver
+
+    </a>
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Video Educativo</title>
+
+  <!-- CSS GENERAL -->
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+  <!-- CSS VIDEO -->
+
+  <link
+    rel="stylesheet"
+    href="video.css"
+  >
+
+</head>
+
+<body>
+
+  <div class="pantalla-video">
+
+    <!-- TÍTULO -->
+
+    <div class="titulo-video">
+
+      🎥 VIDEO EDUCATIVO
+
+    </div>
+
+    <!-- SUBTÍTULO -->
+
+    <div class="subtitulo-video">
+
+      Observá el funcionamiento de la célula
+
+    </div>
+
+    <!-- CONTENEDOR VIDEO -->
+
+    <div class="contenedor-video">
+
+      <video
+        id="videoPrincipal"
+        class="video-principal"
+      >
+
+        <source
+          src="video.mp4"
+          type="video/mp4"
+        >
+
+        Tu navegador no soporta video.
+
+      </video>
+
+    </div>
+
+    <!-- BOTÓN PLAY -->
+
+    <button
+      id="btnPlay"
+      class="boton-play"
+    >
+
+      ▶ Reproducir Video
+
+    </button>
+
+    <!-- BOTÓN JUGAR -->
+
+    <a
+      href="seleccion.html"
+      class="boton-volver"
+    >
+
+      🎮 Jugar
+
+    </a>
+
+    <!-- BOTÓN VOLVER -->
+
+    <a
+      href="index.html"
+      class="boton-volver"
+    >
+
+      ⬅ Volver
+
+    </a>
+
+  </div>
+
+  <script>
+
+    const video =
+      document.getElementById(
+        "videoPrincipal"
+      );
+
+    const btnPlay =
+      document.getElementById(
+        "btnPlay"
+      );
+
+    btnPlay.addEventListener(
+      "click",
+      () => {
+
+        if(video.paused){
+
+          video.play();
+
+          btnPlay.innerHTML =
+            "⏸ Pausar Video";
+
+        }else{
+
+          video.pause();
+
+          btnPlay.innerHTML =
+            "▶ Reproducir Video";
+
+        }
+
+      }
+    );
+
+    video.addEventListener(
+      "ended",
+      () => {
+
+        btnPlay.innerHTML =
+          "▶ Reproducir Video";
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
