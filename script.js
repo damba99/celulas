@@ -17,6 +17,9 @@ let numeroActual = null;
 
 let audioActual = null;
 
+const audioCorrecto = new Audio('audios/correcto.mp3');
+const audioCompletado = new Audio('audios/jugar.mp3');
+
 /* =========================
    CONFIGURACIÓN DESDE HTML
 ========================= */
@@ -291,6 +294,18 @@ zonaImagen.addEventListener(
     /* ACTUALIZAR */
 
     actualizarBloqueos();
+
+    /* AUDIO CORRECTO */
+
+    audioCorrecto.currentTime = 0;
+    audioCorrecto.play();
+
+    /* AUDIO COMPLETADO */
+
+    if (siguientePermitido > nombres.length) {
+      audioCompletado.currentTime = 0;
+      audioCompletado.play();
+    }
 
     numeroActual = null;
 

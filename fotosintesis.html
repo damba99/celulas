@@ -144,6 +144,32 @@
       transform: translateY(2px);
     }
 
+    .inicio {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .boton-empezar {
+      padding: 20px 40px;
+      border-radius: 50px;
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2196f3, #1976d2);
+      color: white;
+      border: none;
+      box-shadow: 0 18px 40px rgba(33,150,243,0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .boton-empezar:hover {
+      transform: translateY(-4px);
+    }
+
+    .boton-empezar:active {
+      transform: translateY(2px);
+    }
+
     @media (max-width: 768px) {
       .titulo {
         font-size: 36px;
@@ -169,17 +195,23 @@
 
   <div class="titulo">🌞 FOTOSÍNTESIS</div>
 
-  <div id="pregunta" class="pregunta"></div>
-
-  <div class="opciones">
-    <div id="verdadero" class="boton-vof verdadero">👍<br><span style="font-size: 24px;">Verdadero</span></div>
-    <div id="falso" class="boton-vof falso">👎<br><span style="font-size: 24px;">Falso</span></div>
+  <div id="inicio" class="inicio">
+    <button id="empezar" class="boton-empezar">▶ Empezar</button>
   </div>
 
-  <div id="feedback" class="feedback"></div>
+  <div id="juego" class="juego" style="display: none;">
+    <div id="pregunta" class="pregunta"></div>
 
-  <div class="botones-control">
-    <button id="reiniciar" class="boton-control reiniciar">🔄 Reiniciar</button>
+    <div class="opciones">
+      <div id="verdadero" class="boton-vof verdadero">👍<br><span style="font-size: 24px;">Verdadero</span></div>
+      <div id="falso" class="boton-vof falso">👎<br><span style="font-size: 24px;">Falso</span></div>
+    </div>
+
+    <div id="feedback" class="feedback"></div>
+
+    <div class="botones-control">
+      <button id="reiniciar" class="boton-control reiniciar">🔄 Reiniciar</button>
+    </div>
   </div>
 
   <script>
@@ -199,6 +231,9 @@
     const falsoEl = document.getElementById('falso');
     const feedbackEl = document.getElementById('feedback');
     const reiniciarEl = document.getElementById('reiniciar');
+    const empezarEl = document.getElementById('empezar');
+    const inicioEl = document.getElementById('inicio');
+    const juegoEl = document.getElementById('juego');
 
     // Crear audios
     const audioPregunta = new Audio();
@@ -206,6 +241,7 @@
     const audioFalso = new Audio('audios/falso.mp3');
     const audioCorrecto = new Audio('audios/correcto.mp3');
     const audioIncorrecto = new Audio('audios/incorrecto.mp3');
+    const audioCompletado = new Audio('audios/jugar.mp3');
     const audioAtras = new Audio('audios/atras.mp3');
     const audioReiniciar = new Audio('audios/reiniciar.mp3');
 
@@ -216,6 +252,9 @@
       respondido = false;
       // Actualizar audio de pregunta
       audioPregunta.src = `audios/p${indiceActual + 1}.mp3`;
+      // Reproducir automáticamente
+      audioPregunta.currentTime = 0;
+      audioPregunta.play();
     }
 
     function verificarRespuesta(esVerdadero) {
@@ -240,12 +279,20 @@
         } else {
           feedbackEl.textContent = '¡Juego terminado! 🎉';
           feedbackEl.className = 'feedback correcto';
+          audioCompletado.currentTime = 0;
+          audioCompletado.play();
         }
       }, 2000);
     }
 
     verdaderoEl.addEventListener('click', () => verificarRespuesta(true));
     falsoEl.addEventListener('click', () => verificarRespuesta(false));
+
+    empezarEl.addEventListener('click', () => {
+      inicioEl.style.display = 'none';
+      juegoEl.style.display = 'block';
+      mostrarPregunta();
+    });
 
     reiniciarEl.addEventListener('click', () => {
       indiceActual = 0;
@@ -278,7 +325,7 @@
       audioReiniciar.play();
     });
 
-    mostrarPregunta();
+    // mostrarPregunta(); // Removido, ahora se llama al empezar
   </script>
 </body>
 </html>
